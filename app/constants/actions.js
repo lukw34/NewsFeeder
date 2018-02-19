@@ -1,0 +1,9 @@
+const LOADER_PUSH = 'LOADER_PUSH',
+    LOADER_POP = 'LOADER_POP',
+    LOADER_CLEAR = 'LOADER_CLEAR';
+
+export {
+    LOADER_PUSH,
+    LOADER_POP,
+    LOADER_CLEAR
+};
