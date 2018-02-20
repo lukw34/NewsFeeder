@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const ListRow = ({value}) => (
     <View>
-        <Text>{value}</Text>
+        <Text>{value.title}</Text>
     </View>
 );
 

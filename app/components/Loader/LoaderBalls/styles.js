@@ -1,13 +1,13 @@
 import {StyleSheet} from 'react-native';
 import variables from '../../../variables';
-const size = 20;
+const size = 25;
 
 export default StyleSheet.create({
     circle: {
-        margin: 2,
+        margin: 4,
         width: size,
         height: size,
         borderRadius: size / 2,
-        backgroundColor: variables.text
+        backgroundColor: variables.accentColor
     }
 })

@@ -1,12 +1,14 @@
 import React from 'react';
+import {Text} from 'react-native';
 import {Provider} from 'react-redux';
 import store from './store';
-import Navigator from './components/Navigator';
+
+import Root from './components/Root';
 
 
 const App = () => (
     <Provider store={store}>
-        <Navigator scenes={['home']}/>
+        <Root/>
     </Provider>
 );
 

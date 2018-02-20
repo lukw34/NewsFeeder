@@ -8,7 +8,6 @@ export default StyleSheet.create({
         marginBottom: 15,
         borderColor: variables.divider,
         borderWidth: 3,
-        borderRadius: 12,
         backgroundColor: variables.accentColor,
         flexDirection: 'row',
         alignItems: 'center',
@@ -26,7 +25,6 @@ export default StyleSheet.create({
         color: variables.text,
         fontSize: 17,
         fontWeight: '600'
-        // flex: 0.9
     }
 
 })

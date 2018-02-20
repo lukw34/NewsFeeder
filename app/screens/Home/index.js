@@ -18,8 +18,10 @@ class Home extends React.Component {
         this._onPressButton = this._onPressButton.bind(this);
     }
 
-    _onPressButton(countryCode) {
-        alert(countryCode);
+    _onPressButton(country) {
+        this.props.navigation.navigate('NewsList', {
+            country
+        });
     }
 
     render() {

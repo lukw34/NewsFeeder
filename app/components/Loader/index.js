@@ -8,14 +8,14 @@ import styles from './styles';
 class Loader extends React.Component {
     state = {
         balls: []
-    }
+    };
 
     loader = [];
-    break = 125
-    variation = 5
+    break = 125;
+    variation = 5;
 
     constructor(props) {
-        super(props)
+        super(props);
         this._mapPropsToState = this._mapPropsToState.bind(this);
         setTimeout(() => {
             this._mapPropsToState(this.props);
@@ -66,6 +66,6 @@ class Loader extends React.Component {
 
 Loader.propTypes = {
     ballsNumber: PropTypes.number.isRequired
-}
+};
 
 export default Loader;

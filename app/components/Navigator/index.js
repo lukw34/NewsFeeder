@@ -14,6 +14,11 @@ class Navigator extends React.Component {
         this._parseScenes();
     }
 
+
+    shouldComponentUpdate({scenes}) {
+        return scenes.length !== this.props.scenes.length;
+    }
+
     _parseScenes() {
         const {scenes = []} = this.props;
         scenes.forEach(sceneName => {

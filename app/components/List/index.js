@@ -9,7 +9,7 @@ const List = ({items = []}) => (
     <View>
         <FlatList
             data={items.map((value, index) => ({value, index, key: `key-${index}`}))}
-            renderItem={({item}) => <Text>{item.value}</Text>}
+            renderItem={({item}) => <Text>{item.value.title}</Text>}
         />
     </View>
 );

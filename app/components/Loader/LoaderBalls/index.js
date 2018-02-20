@@ -10,7 +10,7 @@ class LoaderBalls extends React.Component {
     state = {
         translateY: new Animated.Value(0),
         stopAnimation: false
-    }
+    };
 
     constructor(props) {
         super(props);
