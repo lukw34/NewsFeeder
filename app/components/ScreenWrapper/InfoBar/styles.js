@@ -32,6 +32,7 @@ const marginHorizontal = 20,
                     height: 2
                 },
                 textShadowColor: variables.primary,
+                color: variables.text,
                 textShadowRadius: 1
             }
         }

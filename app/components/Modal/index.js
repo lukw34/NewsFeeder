@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Modal} from 'react-native';
 
-const AppModal = ({modalActive, onRequestClose = () => {}, transparent, children}) => (
+const AppModal = ({modalActive, onRequestClose = () => {}, transparent, animationType = 'slide', children}) => (
         <Modal
             visible={modalActive}
             transparent={transparent}
-            animationType={'slide'}
+            animationType={animationType}
             onRequestClose={onRequestClose}
         >
             {children}

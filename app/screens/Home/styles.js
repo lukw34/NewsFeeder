@@ -8,22 +8,26 @@ export default StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 75
+        marginBottom: 70
     },
     homeScreenTitle: {
-        flex: 0.1,
+        flex: 0.2,
         textAlign: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
         padding: 10,
-        marginTop: 5,
-        fontSize: 20,
+        marginTop: 25,
+        fontSize: 25,
+        marginLeft: 20,
+        marginRight: 20,
         fontWeight: '700',
-        color: variables.text,
+        color: variables.primaryText,
         textShadowOffset: {
-            width: 2,
-            height: 2
+            width: 3,
+            height: 3
         },
         textShadowColor: variables.primary,
-        textShadowRadius: 1
+        textShadowRadius: 4
     },
     homeScreenButtons: {
         borderLeftWidth: 1,

@@ -19,13 +19,19 @@ const mapStateToProps = ({request: {data, country, category}}) => ({
 class NewsList extends React.Component {
     constructor(props) {
         super(props);
+        this.navigateTo =this.navigateTo.bind(this);
     }
 
+    navigateTo(screen, config) {
+        this.props.navigation.navigate(screen, config);
+    }
 
     render() {
-        const {items} = this.props,
+        const {items, style} = this.props,
             listProps = {
-                items
+                style,
+                items,
+                navigateTo: this.navigateTo
             };
 
         return <NewsListComponent {...listProps} />

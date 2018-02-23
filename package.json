@@ -20,6 +20,7 @@
     "react-mixin": "2",
     "react-native-flags": "^1.0.0",
     "react-native-round-flags": "^1.0.4",
+    "react-native-vector-icons": "^4.5.0",
     "react-navigation": "^1.0.3",
     "react-redux": "^5.0.6",
     "react-test-renderer": "16.2.0",

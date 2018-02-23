@@ -6,15 +6,16 @@ import styles from './styles';
 
 import List from '../../components/List';
 
-const NewsList = ({items, category}) => (
-    <View>
-        <List items={items}/>
+const NewsList = ({items, category, style, navigateTo}) => (
+    <View style={[style]}>
+        <List items={items} navigateTo={navigateTo}/>
     </View>
 );
 
 NewsList.propTypes = {
     items: PropTypes.array,
-    category: PropTypes.string
+    category: PropTypes.string,
+    navigateTo: PropTypes.func
 };
 
 export default NewsList;

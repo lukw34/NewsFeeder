@@ -6,8 +6,6 @@ export default StyleSheet.create({
         height: 55,
         width: 300,
         marginBottom: 15,
-        borderColor: variables.divider,
-        borderWidth: 3,
         backgroundColor: variables.accentColor,
         flexDirection: 'row',
         alignItems: 'center',
@@ -22,9 +20,45 @@ export default StyleSheet.create({
     },
     countryButtonText: {
         marginLeft: 20,
+        marginTop: 3,
         color: variables.text,
         fontSize: 17,
         fontWeight: '600'
     }
 
 })
+
+const styles = StyleSheet.create({
+        countryButtonGradient: {
+            marginBottom: 15
+        },
+        countryButtonContainer: {
+            height: 55,
+            width: 300,
+            flexDirection: 'row',
+            alignItems: 'center',
+            flexWrap: 'wrap'
+        },
+        countryButtonInsideContainer: {
+            flexDirection: 'row'
+        },
+        countryButtonFlag: {
+            flexDirection: 'row',
+            marginLeft: 10
+        },
+        countryButtonText: {
+            marginLeft: 20,
+            marginTop: 3,
+            color: variables.text,
+            fontSize: 17,
+            fontWeight: '600'
+        }
+    }),
+    gradient = {
+        colors: [variables.darkAccentColor, variables.accentColor, variables.darkAccentColor]
+    };
+
+export {
+    gradient,
+    styles
+}

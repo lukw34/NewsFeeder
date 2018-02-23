@@ -1,9 +1,10 @@
 import React from 'react';
 import {Text, View, TouchableHighlight} from 'react-native';
 import PropTypes from 'prop-types';
+import LinearGradient from 'react-native-linear-gradient';
 
 import variables from '../../variables';
-import styles from './styles';
+import {styles, gradient} from './styles';
 import Flag from 'react-native-flags';
 
 class CountryButton extends React.Component {
@@ -27,6 +28,7 @@ class CountryButton extends React.Component {
     render() {
         const {countryCode} = this.props;
         return (
+            <LinearGradient {...gradient} style={styles.countryButtonGradient}>
             <TouchableHighlight
                 style={styles.countryButtonContainer}
                 onPress={this._onPress}
@@ -46,6 +48,7 @@ class CountryButton extends React.Component {
                 </View>
 
             </TouchableHighlight>
+            </LinearGradient>
         );
     }
 }

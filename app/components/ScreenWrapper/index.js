@@ -1,5 +1,4 @@
 import React from 'react';
-import {View, Button} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 import InfoBar from './InfoBar';
@@ -11,7 +10,8 @@ const HOCWrapper = (Screen, externalNavigationOptions) => {
         static navigationOptions = {
             headerStyle: styles.navigatorBarBackground,
             headerTitleStyle: styles.navigatorBarTitleStyle,
-            ...externalNavigationOptions
+            ...externalNavigationOptions,
+            title: (externalNavigationOptions.title || '').toUpperCase()
         };
 
         constructor(props) {

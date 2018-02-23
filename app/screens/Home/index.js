@@ -25,8 +25,9 @@ class Home extends React.Component {
     }
 
     render() {
+        const {style} = this.props;
         return (
-            <View style={styles.homeScreenContainer}>
+            <View style={[style, styles.homeScreenContainer]}>
                 <Text style={styles.homeScreenTitle}>
                     From which country news are you interested in ?
                 </Text>
@@ -43,5 +44,5 @@ class Home extends React.Component {
 }
 
 export default ScreenWrapper(Home, {
-    title: 'Welcome in News Feeder'
+    title: 'News Feeder'
 });

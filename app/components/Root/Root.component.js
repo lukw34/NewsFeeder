@@ -9,7 +9,7 @@ import ModalLoader from '../Modal/Loader';
 const Root = ({isLoader = false}) => (
     <View style={{flex: 1}}>
         <Navigator
-            scenes={['home', 'newsList']}
+            scenes={['home', 'newsList', 'news']}
         />
         <ModalLoader
             modalActive={isLoader}

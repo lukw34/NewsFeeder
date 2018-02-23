@@ -4,13 +4,12 @@ import variables from '../../variables';
 
 const styles = StyleSheet.create({
         navigatorBarBackground: {
-            backgroundColor: variables.lightPrimary,
-            flexDirection: 'column',
-            justifyContent: 'center'
+            backgroundColor: variables.darkPrimary
         },
         navigatorBarTitleStyle: {
-            color: variables.accentColor,
-            alignItems: 'center'
+            color: variables.text,
+            justifyContent: 'space-between',
+            textAlign: 'center'
         },
         baseContainer: {
             flex: 1,
@@ -18,11 +17,10 @@ const styles = StyleSheet.create({
         },
         screenContainer: {
             flex: 1
-        },
-        infoContainer: {}
+        }
     }),
     gradient = {
-        colors: [variables.darkPrimary, variables.primary, variables.darkAccentColor]
+        colors: [variables.lightPrimary, variables.primary, variables.darkPrimary]
     };
 
 export {
