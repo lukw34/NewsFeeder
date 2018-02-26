@@ -2,16 +2,24 @@ import React from 'react';
 
 import LinearGradient from 'react-native-linear-gradient';
 import InfoBar from './InfoBar';
-import {styles, gradient} from "./styles";
+import styles from "./styles";
+import {View} from 'react-native';
 
-const HOCWrapper = (Screen, externalNavigationOptions) => {
+const HOCWrapper = (Screen, externalNavigationOptions, customHandler = () => ({})) => {
     class ScreenWrapper extends React.Component {
 
-        static navigationOptions = {
-            headerStyle: styles.navigatorBarBackground,
-            headerTitleStyle: styles.navigatorBarTitleStyle,
-            ...externalNavigationOptions,
-            title: (externalNavigationOptions.title || '').toUpperCase()
+        static navigationOptions = ({navigation}) => {
+            const navigator = {
+                headerStyle: styles.navigatorBarBackground,
+                headerTitleStyle: styles.navigatorBarTitleStyle,
+                ...externalNavigationOptions,
+                ...customHandler(navigation)
+            };
+
+            return {
+                ...navigator,
+                title: (navigator.title || '').toUpperCase()
+            };
         };
 
         constructor(props) {
@@ -20,7 +28,7 @@ const HOCWrapper = (Screen, externalNavigationOptions) => {
 
         render() {
             return (
-                <LinearGradient {...gradient} style={styles.baseContainer}>
+                <View style={styles.baseContainer}>
                     <Screen
                         style={styles.screenContainer}
                         navigation={this.props.navigation}
@@ -29,7 +37,7 @@ const HOCWrapper = (Screen, externalNavigationOptions) => {
                         style={styles.infoBarContainer}
                         title="Powered by News API"
                     />
-                </LinearGradient>
+                </View>
             );
         }
     }

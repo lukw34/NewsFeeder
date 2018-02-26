@@ -32,7 +32,7 @@ export default StyleSheet.create({
     homeScreenButtons: {
         borderLeftWidth: 1,
         borderRightWidth: 1,
-        marginTop: 20,
+        marginTop: 10,
         paddingLeft: 20,
         paddingRight: 20,
         borderColor: variables.divider,

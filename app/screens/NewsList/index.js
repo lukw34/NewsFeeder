@@ -3,8 +3,11 @@ import {connect} from 'react-redux'
 
 import NewsListComponent from './NewsList.component';
 import ScreenWrapper from '../../components/ScreenWrapper';
-import {fetchTopHeadlinesForCountry} from '../../actions/fetch.actions';
+import Flag from 'react-native-flags';
 
+import {fetchTopHeadlinesForCountry} from '../../actions/fetch.actions';
+import {mapCategories} from '../../utils/mapper';
+import styles from './styles'
 
 const mapStateToProps = ({request: {data, country, category}}) => ({
         items: data,
@@ -19,7 +22,7 @@ const mapStateToProps = ({request: {data, country, category}}) => ({
 class NewsList extends React.Component {
     constructor(props) {
         super(props);
-        this.navigateTo =this.navigateTo.bind(this);
+        this.navigateTo = this.navigateTo.bind(this);
     }
 
     navigateTo(screen, config) {
@@ -44,6 +47,11 @@ class NewsList extends React.Component {
 
 }
 
-export default ScreenWrapper(connect(mapStateToProps, mapDispatchToProps)(NewsList), {
-    title: 'NewsList'
-});
+export default ScreenWrapper(connect(mapStateToProps, mapDispatchToProps)(NewsList), {}, ({state: {params: {country: countryCode, category}}}) => ({
+    headerRight: (<Flag
+        style={styles.navigatorFlag}
+        code={(countryCode).toUpperCase()}
+        size={32}
+    />),
+    title: mapCategories(category).toUpperCase()
+}));

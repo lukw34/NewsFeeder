@@ -29,7 +29,7 @@ class Home extends React.Component {
         return (
             <View style={[style, styles.homeScreenContainer]}>
                 <Text style={styles.homeScreenTitle}>
-                    From which country news are you interested in ?
+                    {"Worldwide news".toUpperCase()}
                 </Text>
                 <ScrollView style={styles.homeScreenButtons}>
                     {Home.countries.map(countryCode => (<CountryButton

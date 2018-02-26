@@ -1,49 +1,51 @@
 import React from 'react';
-import {View, Text, Button, WebView, ScrollView} from 'react-native';
-import {connect} from "react-redux";
-import ScreenWrapper from "../../components/ScreenWrapper";
+import {connect} from 'react-redux'
+
+import NewsComponent from './News.component';
+import ScreenWrapper from '../../components/ScreenWrapper';
+import {popLoader, pushLoader} from '../../actions/loader.actions';
+
+
+const mapDispatchToProps = dispatch => ({
+    starLoader: () => dispatch(pushLoader()),
+    stopLoader: () => dispatch(popLoader())
+});
+
 
 class News extends React.Component {
+    state = {
+        isReady: true
+    };
+
     constructor(props) {
         super(props);
-        this._onButtonPress = this._onButtonPress.bind(this);
+        this.onLoad = this.onLoad.bind(this);
+        this.onLoadStart = this.onLoadStart.bind(this);
     }
 
-    _onButtonPress() {
-        this.props.navigation.navigate('Home');
+    onLoad() {
+        setTimeout(() => {
+            this.props.stopLoader();
+        }, 250);
+    }
+
+    onLoadStart() {
+        this.props.starLoader();
     }
 
     render() {
-        const {navigation: {state: {params: {url: uri, title}}}} = this.props;
-        return (
-            <View>
-                <Text>{title}</Text>
-                <ScrollView style={{
-                    borderTopWidth: 20,
-                    borderColor: '#FFFF00',
-                    height: 400
-                }}>
-                    <WebView
-                        style={{
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            marginTop: 20,
-                            borderColor: '#00FF00'
-                        }}
-                        source={{uri}}
-                        javaScriptEnabled={true}
-                        domStorageEnabled={true}/>
-                </ScrollView>
-                <Button
-                    title="Back to home screen"
-                    onPress={this._onButtonPress}
-                />
-            </View>
+        const {navigation: {state: {params: {url: uri}}}} = this.props,
+            newsProps = {
+                uri,
+                onLoad: this.onLoad,
+                onLoadStart: this.onLoadStart
+            };
 
-        )
+        return (<NewsComponent {...newsProps} />);
+
     }
 }
 
-export default ScreenWrapper(News, {
-    title: 'News'
+export default ScreenWrapper(connect(null, mapDispatchToProps)(News), {}, navigation => {
+
 });

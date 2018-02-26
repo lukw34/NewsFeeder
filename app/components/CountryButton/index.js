@@ -2,18 +2,13 @@ import React from 'react';
 import {Text, View, TouchableHighlight} from 'react-native';
 import PropTypes from 'prop-types';
 import LinearGradient from 'react-native-linear-gradient';
+import Flag from 'react-native-flags';
 
 import variables from '../../variables';
 import {styles, gradient} from './styles';
-import Flag from 'react-native-flags';
+import {mapCountries} from '../../utils/mapper';
 
 class CountryButton extends React.Component {
-    static countries = {
-        pl: 'Poland',
-        us: 'USA',
-        gb: 'Great Britain'
-    };
-
 
     constructor(props) {
         super(props);
@@ -43,7 +38,7 @@ class CountryButton extends React.Component {
                     <Text
                         style={styles.countryButtonText}
                     >
-                        News from {CountryButton.countries[countryCode]}
+                        News from {mapCountries(countryCode)}
                     </Text>
                 </View>
 
