@@ -3,7 +3,10 @@ import variables from '../../variables';
 
 export default StyleSheet.create({
     listRowContainerButton: {
-      margin: 10,
+      marginTop: 10,
+        marginBottom: 10,
+        marginLeft: 40,
+        marginRight: 10,
     },
     listRowContainer: {
         borderTopWidth: 2,
@@ -14,7 +17,7 @@ export default StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         minHeight: 100,
-        width: 350,
+        minWidth: 300,
         shadowColor: '#000',
         shadowOffset: { width: 4, height: 6 },
         shadowOpacity: 0.8,

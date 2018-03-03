@@ -1,21 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import {View} from 'react-native';
-import styles from './styles';
 
 import List from '../../components/List';
+import TileSidebar from '../../components/TileSidebar'
 
-const NewsList = ({items, category, style, navigateTo}) => (
+const NewsList = ({items, category, style, navigateTo, onRefresh, activeCategory, onTilePress}) => (
     <View style={[style]}>
-        <List items={items} navigateTo={navigateTo}/>
+        <TileSidebar
+            onPress={onTilePress}
+            activeCategory={activeCategory}
+            tiles={['top-headlines', 'business', 'health', 'science', 'technology']}/>
+        <List
+            onRefresh={onRefresh}
+            items={items}
+            navigateTo={navigateTo}
+        />
     </View>
 );
 
 NewsList.propTypes = {
+    onRefresh: PropTypes.func,
+    style: PropTypes.any,
     items: PropTypes.array,
     category: PropTypes.string,
-    navigateTo: PropTypes.func
+    navigateTo: PropTypes.func,
+    activeCategory: PropTypes.string,
+    onTilePress: PropTypes.func
 };
 
 export default NewsList;

@@ -6,11 +6,11 @@ import Icon from 'react-native-vector-icons/Octicons';
 import Modal from '../index';
 import variables from '../../../variables';
 import IconButton from '../../IconButton';
-import withLoader from '../../withLoader';
+import withLoader from '../../../HOC/withLoader';
 
 import styles from './styles';
 
-const ModalInfo = ({modalActive, info: {description, title, url, urlToImage: uri}, onRequestClose, onSubmitPress}) => {
+const ModalInfo = ({modalActive, info: {description, title, url, urlToImage: uri, source}, onRequestClose, onSubmitPress}) => {
     const WrappedImage = withLoader(Image, {
         style: styles.infoModalContentImage,
         source: {uri}
@@ -24,7 +24,11 @@ const ModalInfo = ({modalActive, info: {description, title, url, urlToImage: uri
             animationType={'fade'}
         >
             <ScrollView style={styles.infoModalContainer} contentContainerStyle={styles.infoModalContainerContent}>
-                <TouchableHighlight onPress={onRequestClose} style={styles.infoModalContentClose}>
+                <TouchableHighlight
+                    onPress={onRequestClose}
+                    style={styles.infoModalContentClose}
+                    underlayColor={null}
+                >
                     <Icon name="x" size={40} color={variables.divider}/>
                 </TouchableHighlight>
                 <Text style={styles.infoModalContentTitle}>{title}</Text>
@@ -32,7 +36,7 @@ const ModalInfo = ({modalActive, info: {description, title, url, urlToImage: uri
                 {description && <Text style={styles.infoModalContentDescription}>{description.toLocaleString()}</Text>}
                 <View style={styles.infoModalContentButton}>
                     {url && <IconButton
-                        onPress={() => onSubmitPress({url, title})}
+                        onPress={() => onSubmitPress({url, title, source})}
                         title="Read article"
                         iconName="chrome-reader-mode"
                     />}

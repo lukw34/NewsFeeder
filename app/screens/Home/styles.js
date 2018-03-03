@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import variables from '../../variables';
 
 
@@ -10,23 +10,28 @@ export default StyleSheet.create({
         alignItems: 'center',
         marginBottom: 70
     },
+    homeScreenImage: {
+        height: 150,
+        width: Dimensions.get('window').width
+    },
     homeScreenTitle: {
-        flex: 0.2,
         textAlign: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
-        padding: 10,
         marginTop: 25,
-        fontSize: 25,
+        marginBottom: 10,
+        fontSize: 27,
         marginLeft: 20,
         marginRight: 20,
         fontWeight: '700',
+        borderBottomWidth: 4,
+        borderColor: variables.divider,
         color: variables.primaryText,
         textShadowOffset: {
             width: 3,
             height: 3
         },
-        textShadowColor: variables.primary,
+        textShadowColor: variables.divider,
         textShadowRadius: 4
     },
     homeScreenButtons: {

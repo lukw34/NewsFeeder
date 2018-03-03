@@ -1,7 +1,6 @@
 import React from 'react';
 import {StackNavigator} from 'react-navigation';
 import PropTypes from 'prop-types';
-import variables from '../../variables';
 
 import scenesConf from '../../screens';
 

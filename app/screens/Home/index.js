@@ -1,15 +1,22 @@
 import React from 'react';
-import {View, ScrollView, Text} from 'react-native';
+import {View, ScrollView, Text, Image} from 'react-native';
 import styles from './styles';
+import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
 import CountryButton from '../../components/CountryButton';
 import ScreenWrapper from '../../components/ScreenWrapper';
+
 
 class Home extends React.Component {
     static countries = [
         'pl',
         'gb',
-        'us'
+        'us',
+        'de',
+        'it',
+        'ru',
+        'jp',
+        'ua'
     ];
 
     constructor(props) {
@@ -17,6 +24,7 @@ class Home extends React.Component {
 
         this._onPressButton = this._onPressButton.bind(this);
     }
+
 
     _onPressButton(country) {
         this.props.navigation.navigate('NewsList', {
@@ -28,6 +36,10 @@ class Home extends React.Component {
         const {style} = this.props;
         return (
             <View style={[style, styles.homeScreenContainer]}>
+                <Image
+                    style={styles.homeScreenImage}
+                    source={require('../../resources/news2.jpg')}
+                />
                 <Text style={styles.homeScreenTitle}>
                     {"Worldwide news".toUpperCase()}
                 </Text>
@@ -44,5 +56,15 @@ class Home extends React.Component {
 }
 
 export default ScreenWrapper(Home, {
-    title: 'News Feeder'
+    title: 'News Feeder',
+    headerLeft: (<Icon
+        name="globe"
+        size={35}
+        style={{
+            marginLeft: 20,
+            marginRight: 20
+        }}
+        color="#FFF"
+    />)
+
 });

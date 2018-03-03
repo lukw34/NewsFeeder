@@ -39,11 +39,13 @@ class List extends React.Component {
     }
 
     render() {
-        const {items = []} = this.props,
+        const {items = [], styles: externalStyle, onRefresh} = this.props,
             {isModalVisible, info} = this.state;
         return (
-            <View style={styles.listContainer}>
+            <View style={[externalStyle, styles.listContainer]}>
                 <FlatList
+                    refreshing={false}
+                    onRefresh={onRefresh}
                     data={items.map((value, index) => ({value, index, key: `key-${index}`}))}
                     renderItem={({item}) => <ListRow onPress={this.openModal} item={item.value}/>}
                 />
@@ -59,7 +61,9 @@ class List extends React.Component {
 }
 
 List.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.object)
+    items: PropTypes.arrayOf(PropTypes.object),
+    styles: PropTypes.any,
+    onRefresh: PropTypes.func
 };
 
 export default List

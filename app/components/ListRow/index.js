@@ -13,12 +13,13 @@ class ListRow extends React.Component {
     }
 
     _onPress() {
-        const {onPress, item: {title, description, urlToImage, url}} = this.props;
+        const {onPress, item: {title, description, urlToImage, url, source: {name: source}}} = this.props;
         onPress({
             title,
             description,
             urlToImage,
-            url
+            url,
+            source
         });
     }
 
