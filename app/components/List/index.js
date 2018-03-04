@@ -12,6 +12,12 @@ class List extends React.Component {
         info: {}
     };
 
+    static propTypes = {
+        items: PropTypes.arrayOf(PropTypes.object),
+        styles: PropTypes.any,
+        onRefresh: PropTypes.func
+    };
+
     constructor(props) {
         super(props);
         this.openModal = this.openModal.bind(this);
@@ -47,7 +53,7 @@ class List extends React.Component {
                     refreshing={false}
                     onRefresh={onRefresh}
                     data={items.map((value, index) => ({value, index, key: `key-${index}`}))}
-                    renderItem={({item}) => <ListRow onPress={this.openModal} item={item.value}/>}
+                    renderItem={({item}) => <ListRow onPress={this.openModal} {...item.value}/>}
                 />
                 <ModalInfo
                     modalActive={isModalVisible}
@@ -59,11 +65,5 @@ class List extends React.Component {
         )
     }
 }
-
-List.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.object),
-    styles: PropTypes.any,
-    onRefresh: PropTypes.func
-};
 
 export default List

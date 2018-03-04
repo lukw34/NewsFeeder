@@ -7,14 +7,14 @@ import variables from '../../../variables';
 import styles from './styles';
 
 
-class Tile extends React.Component {
+class Tile extends React.PureComponent {
     state = {
         translateX: new Animated.Value(-20),
         color: new Animated.Value(0)
     };
 
     animationIn = Animated.parallel([Animated.timing(this.state.translateX, {
-        duration: 250,
+        duration: 1000,
         toValue: -3
     }), Animated.timing(this.state.color, {
         duration: 250,
@@ -23,7 +23,7 @@ class Tile extends React.Component {
 
 
     animationOut = Animated.parallel([Animated.timing(this.state.translateX, {
-        duration: 250,
+        duration: 2000,
         toValue: -20
     }), Animated.timing(this.state.color, {
         duration: 250,
@@ -36,10 +36,11 @@ class Tile extends React.Component {
         this._onPress = this._onPress.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!nextProps.isActive && this.props.isActive) {
+    componentWillReceiveProps({isActive: newIsActive}) {
+        const {isActive} = this.props;
+        if (!newIsActive && isActive) {
             this.animationOut.start();
-        } else if (nextProps.isActive && !this.props.isActive) {
+        } else if (newIsActive && !isActive) {
             this.animationIn.start();
         }
     }
@@ -47,7 +48,9 @@ class Tile extends React.Component {
     _onPress() {
         const {url, onPress, isActive} = this.props;
         if (!isActive) {
-            onPress(url);
+            onPress(url).then(() => {
+                this.animationIn.start();
+            });
         }
     }
 
@@ -85,8 +88,9 @@ class Tile extends React.Component {
 
 Tile.propTypes = {
     onPress: PropTypes.func,
-    id: PropTypes.string,
-    name: PropTypes.string
+    isActive: PropTypes.bool,
+    name: PropTypes.string,
+    url: PropTypes.string
 };
 
 export default Tile;

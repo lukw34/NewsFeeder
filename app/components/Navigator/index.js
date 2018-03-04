@@ -13,6 +13,9 @@ class Navigator extends React.Component {
         this._parseScenes();
     }
 
+    static propTypes = {
+        scenes: PropTypes.arrayOf(PropTypes.string)
+    };
 
     shouldComponentUpdate({scenes}) {
         return scenes.length !== this.props.scenes.length;
@@ -41,9 +44,5 @@ class Navigator extends React.Component {
         return <Router />
     }
 }
-
-Navigator.propTypes = {
-    scenes: PropTypes.arrayOf(PropTypes.string)
-};
 
 export default Navigator;

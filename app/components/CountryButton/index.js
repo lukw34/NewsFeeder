@@ -8,12 +8,17 @@ import variables from '../../variables';
 import {styles, gradient} from './styles';
 import {mapCountries} from '../../utils/mapper';
 
-class CountryButton extends React.Component {
+class CountryButton extends React.PureComponent {
 
     constructor(props) {
         super(props);
         this._onPress = this._onPress.bind(this);
     }
+
+    static propTypes = {
+        onPress: PropTypes.func,
+        countryCode: PropTypes.string
+    };
 
     _onPress() {
         const {onPress, countryCode} = this.props;
@@ -47,10 +52,5 @@ class CountryButton extends React.Component {
         );
     }
 }
-
-CountryButton.propTypes = {
-    onPress: PropTypes.func,
-    countryCode: PropTypes.string
-};
 
 export default CountryButton;

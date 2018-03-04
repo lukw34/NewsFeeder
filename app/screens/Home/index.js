@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {View, ScrollView, Text, Image} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
@@ -18,6 +19,12 @@ class Home extends React.Component {
         'jp',
         'ua'
     ];
+
+    static propTypes = {
+        navigation: PropTypes.shape({
+            navigate: PropTypes.func
+        })
+    };
 
     constructor(props) {
         super(props);
@@ -40,9 +47,6 @@ class Home extends React.Component {
                     style={styles.homeScreenImage}
                     source={require('../../resources/news2.jpg')}
                 />
-                <Text style={styles.homeScreenTitle}>
-                    {"Worldwide news".toUpperCase()}
-                </Text>
                 <ScrollView style={styles.homeScreenButtons}>
                     {Home.countries.map(countryCode => (<CountryButton
                         key={countryCode}

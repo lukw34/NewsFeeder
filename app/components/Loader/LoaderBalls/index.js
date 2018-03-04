@@ -1,8 +1,6 @@
 import React from 'react';
-import {View, Animated} from 'react-native';
+import {Animated} from 'react-native';
 import PropTypes from 'prop-types';
-import TimerMixin from 'react-timer-mixin';
-import reactMixin from 'react-mixin';
 
 import styles from './styles';
 
@@ -10,6 +8,14 @@ class LoaderBalls extends React.Component {
     state = {
         translateY: new Animated.Value(0),
         stopAnimation: false
+    };
+
+    static propTypes = {
+        duration: PropTypes.number,
+        index: PropTypes.number,
+        delay: PropTypes.number,
+        value: PropTypes.number,
+        variation: PropTypes.number
     };
 
     constructor(props) {
@@ -66,13 +72,5 @@ class LoaderBalls extends React.Component {
         this.runAnimation();
     }
 }
-
-LoaderBalls.propTypes = {
-    duration: PropTypes.number,
-    index: PropTypes.number,
-    delay: PropTypes.number,
-    value: PropTypes.number,
-    variation: PropTypes.number
-};
 
 export default LoaderBalls;

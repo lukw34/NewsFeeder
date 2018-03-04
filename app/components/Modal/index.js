@@ -18,7 +18,9 @@ AppModal.propTypes = {
     inputProps: PropTypes.object,
     title: PropTypes.string,
     modalActive: PropTypes.bool,
-    onRequestClose: PropTypes.func
+    onRequestClose: PropTypes.func,
+    animationType: PropTypes.string,
+    children: PropTypes.element
 };
 
 export default AppModal;

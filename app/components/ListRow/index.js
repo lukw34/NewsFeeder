@@ -1,19 +1,28 @@
 import React from 'react';
 import {Text, View, TouchableHighlight} from 'react-native';
 import PropTypes from 'prop-types';
-import IconButton from '../../components/IconButton';
 
 import variables from '../../variables';
 import styles from './styles';
 
-class ListRow extends React.Component {
+class ListRow extends React.PureComponent {
+   static propTypes = {
+        title: PropTypes.string,
+        description: PropTypes.string,
+        urlToImage: PropTypes.string,
+        source: PropTypes.shape({
+            name: PropTypes.string
+        }),
+        onPress: PropTypes.func
+    };
+
     constructor(props) {
         super(props);
         this._onPress = this._onPress.bind(this);
     }
 
     _onPress() {
-        const {onPress, item: {title, description, urlToImage, url, source: {name: source}}} = this.props;
+        const {onPress, title, description, urlToImage, url, source: {name: source}} = this.props;
         onPress({
             title,
             description,
@@ -24,7 +33,7 @@ class ListRow extends React.Component {
     }
 
     render() {
-        const {item: {source: {name}, title}} = this.props;
+        const {source: {name}, title} = this.props;
         return (
             <TouchableHighlight
                 style={styles.listRowContainerButton}
@@ -40,11 +49,5 @@ class ListRow extends React.Component {
         );
     }
 }
-
-
-ListRow.propTypes = {
-    value: PropTypes.shape({}),
-    onPress: PropTypes.func
-};
 
 export default ListRow;

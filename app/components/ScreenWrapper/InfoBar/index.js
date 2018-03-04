@@ -1,9 +1,15 @@
 import React from 'react';
 import {View, Text, TouchableWithoutFeedback, Animated} from 'react-native';
+import PropTypes from 'prop-types';
 
 import {styles as commonStyle, fullHeight} from './styles';
 
 class InfoBar extends React.Component {
+    static propTypes = {
+        style: PropTypes.any,
+        title: PropTypes.string
+    };
+
     state = {
         translateY: new Animated.Value(0)
     };
@@ -43,6 +49,5 @@ class InfoBar extends React.Component {
 
     }
 }
-
 
 export default InfoBar;

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import LinearGradient from 'react-native-linear-gradient';
 import InfoBar from './InfoBar';
 import styles from "./styles";
 import {View} from 'react-native';

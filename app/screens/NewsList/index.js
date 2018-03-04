@@ -22,6 +22,21 @@ const mapStateToProps = ({request: {data: items, country, category}}) => ({
 
 
 class NewsList extends React.Component {
+    static propTypes = {
+        items: PropTypes.array,
+        style: PropTypes.any,
+        category: PropTypes.string,
+        fetchNews: PropTypes.func,
+        fetchNewsByCategory: PropTypes.func,
+        navigation: PropTypes.shape({
+            state: PropTypes.shape({
+                params: PropTypes.shape({
+                    country: PropTypes.string
+                })
+            })
+        })
+    };
+
     constructor(props) {
         super(props);
         this.navigateTo = this.navigateTo.bind(this);
@@ -47,10 +62,10 @@ class NewsList extends React.Component {
     getNewsListByCategory(category) {
         const {country, fetchNewsByCategory, fetchNews} = this.props;
         if (category) {
-            fetchNewsByCategory(country, category);
-        } else {
-            fetchNews(country);
+            return fetchNewsByCategory(country, category);
         }
+        return fetchNews(country);
+
     }
 
     render() {
@@ -73,21 +88,6 @@ class NewsList extends React.Component {
     }
 
 }
-
-NewsList.propTypes = {
-    items: PropTypes.array,
-    style: PropTypes.any,
-    category: PropTypes.string,
-    fetchNews: PropTypes.func,
-    fetchNewsByCategory: PropTypes.func,
-    navigation: PropTypes.shape({
-        state: PropTypes.shape({
-            params: PropTypes.shape({
-                country: PropTypes.string
-            })
-        })
-    })
-};
 
 export default ScreenWrapper(connect(mapStateToProps, mapDispatchToProps)(NewsList), {}, ({state: {params: {country: countryCode, category}}}) => ({
     headerRight: (<Flag

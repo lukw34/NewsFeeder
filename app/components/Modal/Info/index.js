@@ -47,7 +47,16 @@ const ModalInfo = ({modalActive, info: {description, title, url, urlToImage: uri
 };
 
 ModalInfo.propTypes = {
-    modalActive: PropTypes.bool
+    modalActive: PropTypes.bool,
+    info: PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        urlToImage: PropTypes.string,
+        source: PropTypes.string
+
+    }),
+    onSubmitPress: PropTypes.func,
+    onRequestClose: PropTypes.func
 };
 
 export default ModalInfo;
