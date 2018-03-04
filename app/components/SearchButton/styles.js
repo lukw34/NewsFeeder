@@ -6,18 +6,17 @@ export default StyleSheet.create({
     searchButtonView: {
         position: 'absolute',
         right: 0,
-        bottom: 0,
-        zIndex: 10,
+        top: 0,
+        zIndex: 2,
         flexDirection: 'row',
         alignItems: 'center'
     },
     searchButtonContainer: {
         width: 60,
         height: 60,
-        marginRight: 10,
+        marginRight: 5,
+        marginTop: 100,
         borderRadius: 30,
-        borderColor: variables.divider,
-        borderWidth: 3,
         backgroundColor: variables.accentColor,
         alignItems: 'center',
         justifyContent: 'center'

@@ -15,11 +15,13 @@ const buildQueryFromConfig = config => `?apikey=${API_KEY}${Object.keys(config)
                 setTimeout(() => {
                     dispatch(popLoader());
                 }, 200);
+                return Promise.resolve();
             }).catch(err => {
                 dispatch(onRequestError(err));
                 setTimeout(() => {
                     dispatch(popLoader());
                 }, 200);
+                return Promise.reject(err);
             });
     },
     fetchTopHeadlinesForCountry = country => fetchNews('top-headlines', {

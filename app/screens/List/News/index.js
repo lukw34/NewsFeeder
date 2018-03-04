@@ -62,9 +62,13 @@ class NewsList extends React.Component {
     getNewsListByCategory(category) {
         const {country, fetchNewsByCategory, fetchNews} = this.props;
         if (category) {
-            return fetchNewsByCategory(country, category);
+            return fetchNewsByCategory(country, category).catch(() => {
+                this.props.navigation.navigate('Error');
+            });
         }
-        return fetchNews(country);
+        return fetchNews(country).catch(() => {
+            this.props.navigation.navigate('Error');
+        });
 
     }
 

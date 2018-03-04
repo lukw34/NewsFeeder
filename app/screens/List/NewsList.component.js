@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {View} from 'react-native';
 
 import List from '../../components/List';
-import TileSidebar from '../../components/TileSidebar'
+import TileSidebar from '../../components/TileSidebar';
+import EmptyList from '../../components/EmptyList';
 
 const NewsList = ({items, showTiles = true, category, style, navigateTo, onRefresh, activeCategory, onTilePress}) => (
     <View style={[style]}>
@@ -11,11 +12,11 @@ const NewsList = ({items, showTiles = true, category, style, navigateTo, onRefre
             onPress={onTilePress}
             activeCategory={activeCategory}
             tiles={['top-headlines', 'business', 'health', 'science', 'technology']}/>}
-        <List
+        {items.length > 0 ? <List
             onRefresh={onRefresh}
             items={items}
             navigateTo={navigateTo}
-        />
+        /> : <EmptyList/>}
     </View>
 );
 

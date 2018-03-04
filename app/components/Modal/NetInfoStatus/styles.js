@@ -2,17 +2,18 @@ import {StyleSheet} from 'react-native';
 import variables from '../../../variables';
 
 export default StyleSheet.create({
-    loaderModalContainer: {
-        backgroundColor: variables.lightPrimary,
-        flex: 1,
+    netInfoContainer: {
         justifyContent: 'center',
-        alignItems: 'center'
+        flex: 1,
+        backgroundColor: variables.darkPrimary
     },
-    loaderModalContent: {
-        paddingTop: 20,
-        height: 125,
-        borderBottomWidth: 2,
-        borderTopWidth: 2,
-        borderColor: variables.divider
+    netInfoIcon: {
+        alignSelf: 'center'
+    },
+    netInfoText: {
+        fontFamily: 'Verdana',
+        alignSelf: 'center',
+        fontSize: 20,
+        color: 'white'
     }
 });

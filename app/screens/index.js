@@ -2,6 +2,7 @@ import Home from './Home';
 import NewsList from './List/News';
 import SearchList from './List/Search'
 import News from './News';
+import ErrorPage  from './Error';
 
 const screensConfiguration = {
     home: {
@@ -19,6 +20,10 @@ const screensConfiguration = {
     news: {
         screen: News,
         name: 'News'
+    },
+    error: {
+        screen: ErrorPage,
+        name: 'Error'
     }
 };
 

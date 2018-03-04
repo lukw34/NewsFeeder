@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
             marginLeft: 10
         },
         countryButtonText: {
+            fontFamily: 'Verdana',
             marginLeft: 20,
             marginTop: 3,
             color: variables.text,

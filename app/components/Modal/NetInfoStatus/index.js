@@ -1,27 +1,31 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Modal from '../index';
-import Loader from '../../Loader';
 import styles from './styles';
 
-const ModalLoader = ({modalActive}) => (
+
+const ModalNetInfo = ({modalActive}) => (
     <Modal
         modalActive={modalActive}
         transparent={false}
     >
-        <View style={styles.loaderModalContainer}>
-            <View style={styles.loaderModalContent}>
-                <Loader ballsNumber={5}/>
-                <Text>We are fetching some interesting news. </Text>
-            </View>
+        <View style={styles.netInfoContainer}>
+            <Icon
+                name='signal-wifi-off'
+                size={200}
+                style={styles.netInfoIcon}
+                color="white"
+            />
+            <Text style={styles.netInfoText}>{'No internet connection'.toUpperCase()}</Text>
         </View>
     </Modal>
 );
 
-ModalLoader.propTypes = {
+ModalNetInfo.propTypes = {
     modalActive: PropTypes.bool
 };
 
-export default ModalLoader;
+export default ModalNetInfo;

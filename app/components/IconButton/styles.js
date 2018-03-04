@@ -32,7 +32,8 @@ export default StyleSheet.create({
         textAlign: 'center',
         marginRight: 35,
         fontSize: 15,
-        fontWeight: '700'
+        fontWeight: '700',
+        fontFamily: 'Verdana'
     },
     iconButtonContainerIcon: {
         justifyContent: 'flex-end'

@@ -24,6 +24,7 @@ export default StyleSheet.create({
         shadowRadius: 2
     },
     listRowContainerText: {
+        fontFamily: 'Verdana',
         color: variables.primaryText,
         textAlign: 'center',
         fontSize: 20,

@@ -45,7 +45,9 @@ class NewsList extends React.Component {
 
     getNewsList() {
         const {navigation: {state: {params: {query}}}, fetchNewsWithQuery} = this.props;
-        fetchNewsWithQuery(query);
+        fetchNewsWithQuery(query).catch(() => {
+            this.props.navigation.navigate('Error');
+        });
     }
 
     render() {
