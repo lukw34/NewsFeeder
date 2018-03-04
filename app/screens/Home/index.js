@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, ScrollView, Text, Image} from 'react-native';
+
 import styles from './styles';
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
-import CountryButton from '../../components/CountryButton';
+import HomeComponent from './Home.component';
 import ScreenWrapper from '../../components/ScreenWrapper';
-
 
 class Home extends React.Component {
     static countries = [
@@ -26,36 +25,51 @@ class Home extends React.Component {
         })
     };
 
+    state = {
+        inputValue: ''
+    };
+
     constructor(props) {
         super(props);
 
-        this._onPressButton = this._onPressButton.bind(this);
+        this.onPressCountryButton = this.onPressCountryButton.bind(this);
+        this.onSearchPress = this.onSearchPress.bind(this);
+        this.onInputValueChange = this.onInputValueChange.bind(this);
     }
 
 
-    _onPressButton(country) {
+    onPressCountryButton(country) {
         this.props.navigation.navigate('NewsList', {
             country
         });
     }
 
+    onInputValueChange(value) {
+        this.setState({
+            inputValue: value
+        });
+    }
+
+    onSearchPress() {
+        const {inputValue: query} = this.state;
+        this.props.navigation.navigate('SearchNewsList', {
+            query
+        });
+    }
+
     render() {
-        const {style} = this.props;
-        return (
-            <View style={[style, styles.homeScreenContainer]}>
-                <Image
-                    style={styles.homeScreenImage}
-                    source={require('../../resources/news2.jpg')}
-                />
-                <ScrollView style={styles.homeScreenButtons}>
-                    {Home.countries.map(countryCode => (<CountryButton
-                        key={countryCode}
-                        onPress={this._onPressButton}
-                        countryCode={countryCode}
-                    />))}
-                </ScrollView>
-            </View>
-        );
+        const {style} = this.props,
+            {inputValue} = this.state,
+            componentProps = {
+                style,
+                countries: Home.countries,
+                onPressCountryButton: this.onPressCountryButton,
+                onSearchPress: this.onSearchPress,
+                inputValue,
+                onInputValueChange: this.onInputValueChange
+
+            };
+        return (<HomeComponent {...componentProps} />);
     }
 }
 

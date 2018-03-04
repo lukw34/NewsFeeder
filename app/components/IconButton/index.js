@@ -22,7 +22,7 @@ const IconButton = ({onPress, title, iconName}) => (
 IconButton.propTypes = {
     onPress: PropTypes.func,
     title: PropTypes.string,
-    color: PropTypes.string
+    iconName: PropTypes.string
 };
 
 export default IconButton;

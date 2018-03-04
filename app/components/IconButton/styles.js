@@ -18,6 +18,8 @@ export default StyleSheet.create({
         marginRight: 5,
         marginTop: 10,
         alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
         minHeight: 35
     },
     iconButtonContainer: {

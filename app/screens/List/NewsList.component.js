@@ -5,12 +5,12 @@ import {View} from 'react-native';
 import List from '../../components/List';
 import TileSidebar from '../../components/TileSidebar'
 
-const NewsList = ({items, category, style, navigateTo, onRefresh, activeCategory, onTilePress}) => (
+const NewsList = ({items, showTiles = true, category, style, navigateTo, onRefresh, activeCategory, onTilePress}) => (
     <View style={[style]}>
-        <TileSidebar
+        {showTiles && <TileSidebar
             onPress={onTilePress}
             activeCategory={activeCategory}
-            tiles={['top-headlines', 'business', 'health', 'science', 'technology']}/>
+            tiles={['top-headlines', 'business', 'health', 'science', 'technology']}/>}
         <List
             onRefresh={onRefresh}
             items={items}
@@ -26,7 +26,8 @@ NewsList.propTypes = {
     category: PropTypes.string,
     navigateTo: PropTypes.func,
     activeCategory: PropTypes.string,
-    onTilePress: PropTypes.func
+    onTilePress: PropTypes.func,
+    showTiles: PropTypes.bool
 };
 
 export default NewsList;

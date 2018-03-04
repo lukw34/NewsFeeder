@@ -1,5 +1,6 @@
 import Home from './Home';
-import NewsList from './NewsList';
+import NewsList from './List/News';
+import SearchList from './List/Search'
 import News from './News';
 
 const screensConfiguration = {
@@ -10,6 +11,10 @@ const screensConfiguration = {
     newsList: {
         screen: NewsList,
         name: 'NewsList'
+    },
+    searchList: {
+      screen: SearchList ,
+        name: 'SearchNewsList'
     },
     news: {
         screen: News,

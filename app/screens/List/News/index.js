@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
-import NewsListComponent from './NewsList.component';
-import ScreenWrapper from '../../components/ScreenWrapper';
+import NewsListComponent from '../NewsList.component';
+import ScreenWrapper from '../../../components/ScreenWrapper/index';
 import Flag from 'react-native-flags';
 
-import {fetchTopHeadlinesForCountry, fetchByCategory} from '../../actions/fetch.actions';
-import {mapCategories} from '../../utils/mapper';
-import styles from './styles'
+import {fetchTopHeadlinesForCountry, fetchByCategory} from '../../../actions/fetch.actions';
+import {mapCategories} from '../../../utils/mapper';
+import styles from '../styles'
 
 const mapStateToProps = ({request: {data: items, country, category}}) => ({
         items,

@@ -9,7 +9,7 @@ const buildQueryFromConfig = config => `?apikey=${API_KEY}${Object.keys(config)
     fetchNews = (resource, config = {}) => dispatch => {
         dispatch(pushLoader());
         dispatch(onRequestStart());
-        return Fetch.fetching(`${BASE_URL}${resource}${buildQueryFromConfig(config)}`)
+        return Fetch.fetching(`${BASE_URL}${resource}${buildQueryFromConfig({...config, pageSize: 30})}`)
             .then(({body: {articles = []} = {}}) => {
                 dispatch(onRequestSuccess(articles, config.category || resource, config.country));
                 setTimeout(() => {
@@ -28,9 +28,14 @@ const buildQueryFromConfig = config => `?apikey=${API_KEY}${Object.keys(config)
     fetchByCategory = (country, category) => fetchNews('top-headlines', {
         country,
         category
+    }),
+    fetchWithQuery = q => fetchNews('everything', {
+        q,
+        sortBy: 'publishedAt'
     });
 
 export {
     fetchTopHeadlinesForCountry,
-    fetchByCategory
+    fetchByCategory,
+    fetchWithQuery
 }
