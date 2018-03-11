@@ -1,8 +1,9 @@
 import React from 'react';
+import {View} from 'react-native';
+import PropTypes from 'prop-types';
 
 import InfoBar from './InfoBar';
 import styles from "./styles";
-import {View} from 'react-native';
 
 const HOCWrapper = (Screen, externalNavigationOptions, customHandler = () => ({})) => {
     class ScreenWrapper extends React.Component {
@@ -21,9 +22,13 @@ const HOCWrapper = (Screen, externalNavigationOptions, customHandler = () => ({}
             };
         };
 
-        constructor(props) {
-            super(props);
-        }
+        static propTypes = {
+            navigation: PropTypes.shape({})
+        };
+
+        static defaultProps = {
+            navigation: {}
+        };
 
         render() {
             return (

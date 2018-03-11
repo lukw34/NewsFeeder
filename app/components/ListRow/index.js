@@ -6,14 +6,23 @@ import variables from '../../variables';
 import styles from './styles';
 
 class ListRow extends React.PureComponent {
-   static propTypes = {
-        title: PropTypes.string,
+    static propTypes = {
+        title: PropTypes.string.isRequired,
         description: PropTypes.string,
         urlToImage: PropTypes.string,
         source: PropTypes.shape({
             name: PropTypes.string
         }),
+        url: PropTypes.string,
         onPress: PropTypes.func
+    };
+
+    static defaultProps = {
+        description: '',
+        urlToImage: '',
+        source: {},
+        onPress: () => {
+        }
     };
 
     constructor(props) {

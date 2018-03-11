@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import styles from './styles';
-import Icon from 'react-native-vector-icons/SimpleLineIcons'
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 import HomeComponent from './Home.component';
 import ScreenWrapper from '../../components/ScreenWrapper';
+import styles from './styles';
 
 class Home extends React.Component {
     static countries = [
@@ -22,11 +21,8 @@ class Home extends React.Component {
     static propTypes = {
         navigation: PropTypes.shape({
             navigate: PropTypes.func
-        })
-    };
-
-    state = {
-        inputValue: ''
+        }).isRequired,
+        style: PropTypes.shape({})
     };
 
     constructor(props) {
@@ -37,6 +33,9 @@ class Home extends React.Component {
         this.onInputValueChange = this.onInputValueChange.bind(this);
     }
 
+    state = {
+        inputValue: ''
+    };
 
     onPressCountryButton(country) {
         this.props.navigation.navigate('NewsList', {
@@ -78,10 +77,7 @@ export default ScreenWrapper(Home, {
     headerLeft: (<Icon
         name="globe"
         size={35}
-        style={{
-            marginLeft: 20,
-            marginRight: 20
-        }}
+        style={styles.homeScreenNavigator}
         color="#FFF"
     />)
 

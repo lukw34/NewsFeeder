@@ -5,6 +5,14 @@ import PropTypes from 'prop-types';
 import scenesConf from '../../screens';
 
 class Navigator extends React.Component {
+    static propTypes = {
+        scenes: PropTypes.arrayOf(PropTypes.string)
+    };
+
+    static defaultProps = {
+        scenes: []
+    };
+
     constructor(props) {
         super(props);
         this._parseScenes = this._parseScenes.bind(this);
@@ -13,16 +21,12 @@ class Navigator extends React.Component {
         this._parseScenes();
     }
 
-    static propTypes = {
-        scenes: PropTypes.arrayOf(PropTypes.string)
-    };
-
     shouldComponentUpdate({scenes}) {
         return scenes.length !== this.props.scenes.length;
     }
 
     _parseScenes() {
-        const {scenes = []} = this.props;
+        const {scenes} = this.props;
         scenes.forEach(sceneName => {
             const sceneElement = scenesConf[sceneName];
             if (sceneElement) {
@@ -41,7 +45,7 @@ class Navigator extends React.Component {
 
     render() {
         const Router = StackNavigator(this.navigator, this.initialRoute);
-        return <Router />
+        return <Router />;
     }
 }
 

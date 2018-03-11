@@ -1,4 +1,3 @@
-import {REQUEST_FAILURE, REQUEST_SUCCESS, REQUEST_INIT} from '../constants/actions';
 import {createReducer} from '../utils/reducers';
 
 const initState = {

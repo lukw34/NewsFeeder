@@ -46,4 +46,4 @@ const countries = {
 export {
     mapCategories,
     mapCountries
-}
+};

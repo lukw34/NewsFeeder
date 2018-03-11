@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, View, Text} from 'react-native';
+import {FlatList, View} from 'react-native';
 import PropTypes from 'prop-types';
 
 import ListRow from '../ListRow';
@@ -7,15 +7,16 @@ import styles from './styles';
 import ModalInfo from '../Modal/Info';
 
 class List extends React.Component {
-    state = {
-        isModalVisible: false,
-        info: {}
-    };
-
     static propTypes = {
         items: PropTypes.arrayOf(PropTypes.object),
-        styles: PropTypes.any,
-        onRefresh: PropTypes.func
+        styles: PropTypes.shape({}),
+        onRefresh: PropTypes.func.isRequired,
+        navigateTo: PropTypes.func.isRequired
+    };
+
+    static defaultProps = {
+        items: [],
+        styles: {}
     };
 
     constructor(props) {
@@ -23,6 +24,16 @@ class List extends React.Component {
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.onSubmitPress = this.onSubmitPress.bind(this);
+    }
+
+    state = {
+        isModalVisible: false,
+        info: {}
+    };
+
+    onSubmitPress(config) {
+        this.props.navigateTo('News', config);
+        this.closeModal();
     }
 
     openModal(info) {
@@ -35,13 +46,8 @@ class List extends React.Component {
     closeModal() {
         this.setState({
             isModalVisible: false,
-            modalProps: {}
+            info: {}
         });
-    }
-
-    onSubmitPress(config) {
-        this.props.navigateTo('News', config);
-        this.closeModal();
     }
 
     render() {
@@ -53,7 +59,10 @@ class List extends React.Component {
                     refreshing={false}
                     onRefresh={onRefresh}
                     data={items.map((value, index) => ({value, index, key: `key-${index}`}))}
-                    renderItem={({item}) => <ListRow onPress={this.openModal} {...item.value}/>}
+                    renderItem={({item}) => (<ListRow
+                        handlePress={this.openModal}
+                        {...item.value}
+                    />)}
                 />
                 <ModalInfo
                     modalActive={isModalVisible}
@@ -62,8 +71,8 @@ class List extends React.Component {
                     onSubmitPress={this.onSubmitPress}
                 />
             </View>
-        )
+        );
     }
 }
 
-export default List
+export default List;

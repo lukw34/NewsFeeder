@@ -23,4 +23,8 @@ export default StyleSheet.create({
         borderColor: variables.divider,
         flex: 0.9
     },
-})
+    homeScreenNavigator: {
+        marginLeft: 20,
+        marginRight: 20
+    }
+});

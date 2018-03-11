@@ -38,7 +38,7 @@ const Home = ({style, countries, onPressCountryButton, onSearchPress, inputValue
 );
 
 Home.propTypes = {
-    style: PropTypes.any,
+    style: PropTypes.shape({}),
     countries: PropTypes.arrayOf(PropTypes.string),
     onPressCountryButton: PropTypes.func,
     onSearchPress: PropTypes.func,

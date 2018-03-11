@@ -1,46 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {TouchableOpacity, View, Animated} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './styles';
 
 class SearchButton extends React.PureComponent {
     static propTypes = {
-        children: PropTypes.element,
-        onPress: PropTypes.func
+        children: PropTypes.element
     };
-
-    state = {
-        translateY: new Animated.Value(500),
-        isOpen: false
-    };
-
-    animationIn = Animated.timing(this.state.translateY, {
-        toValue: 0,
-        duration: 750
-    });
-
-    animationOut = Animated.timing(this.state.translateY, {
-        toValue: 500,
-        duration: 750
-    });
 
     constructor(props) {
         super(props);
         this._onPress = this._onPress.bind(this);
     }
 
+    state = {
+        translateY: new Animated.Value(500),
+        isOpen: false
+    };
+
     _onPress() {
         const {isOpen} = this.state;
         this.setState({
             isOpen: !isOpen
         }, () => {
-           if(this.state.isOpen) {
-               this.animationIn.start();
-           } else {
-               this.animationOut.start()
-           }
+            if (this.state.isOpen) {
+                Animated.timing(this.state.translateY, {
+                    toValue: 0,
+                    duration: 750
+                }).start();
+            } else {
+                Animated.timing(this.state.translateY, {
+                    toValue: 500,
+                    duration: 750
+                }).start();
+            }
         });
     }
 
@@ -69,7 +64,7 @@ class SearchButton extends React.PureComponent {
                     />
                 </TouchableOpacity>
             </View>
-        )
+        );
     }
 }
 

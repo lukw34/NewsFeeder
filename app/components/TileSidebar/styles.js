@@ -7,4 +7,4 @@ export default StyleSheet.create({
         top: 100,
         zIndex: 10
     }
-})
+});

@@ -33,4 +33,4 @@ export default StyleSheet.create({
         alignItems: 'center',
         paddingBottom: 25
     }
-})
+});

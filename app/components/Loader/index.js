@@ -1,18 +1,11 @@
 import React from 'react';
-import {View, Animated} from 'react-native';
+import {View} from 'react-native';
 import PropTypes from 'prop-types';
 
 import LoaderBalls from './LoaderBalls';
 import styles from './styles';
 
 class Loader extends React.Component {
-    state = {
-        balls: []
-    };
-
-    loader = [];
-    break = 125;
-    variation = 5;
 
     constructor(props) {
         super(props);
@@ -23,15 +16,24 @@ class Loader extends React.Component {
 
     }
 
-    _mapPropsToState(props) {
-        const balls = new Array(props.ballsNumber || 0).fill(this.break);
-        this.setState({balls});
-    }
+    state = {
+        balls: []
+    };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.ballsNumber !== this.state.balls.length) {
             this._mapPropsToState(nextProps);
         }
+    }
+
+    loader = [];
+    break = 125;
+    variation = 5;
+
+
+    _mapPropsToState(props) {
+        const balls = new Array(props.ballsNumber || 0).fill(this.break);
+        this.setState({balls});
     }
 
     stopAnimation() {
@@ -45,21 +47,22 @@ class Loader extends React.Component {
             {ballsNumber} = this.props;
         return (
             <View style={styles.container}>
-                {balls.map((delay, index) => (
+                {balls.map((delay, i) => (
                     <LoaderBalls
                         ref={loaderRef => {
-                            this.loader.push(loaderRef)}
+                            this.loader.push(loaderRef);
                         }
-                        key={`key-${index}`}
-                        index={index}
-                        delay={delay * index}
+                        }
+                        key={`key-${i}`}
+                        index={i}
+                        delay={delay * i}
                         duration={delay * ballsNumber}
                         value={delay}
                         variation={this.variation}
                     />
                 ))}
             </View>
-        )
+        );
     }
 }
 

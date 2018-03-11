@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
 
-const size = 20;
 export default StyleSheet.create({
     container: {
         flexDirection: 'row',
@@ -8,4 +7,4 @@ export default StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 10
     }
-})
+});

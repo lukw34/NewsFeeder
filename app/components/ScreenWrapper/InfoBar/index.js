@@ -6,26 +6,24 @@ import {styles as commonStyle, fullHeight} from './styles';
 
 class InfoBar extends React.Component {
     static propTypes = {
-        style: PropTypes.any,
+        style: PropTypes.shape({}),
         title: PropTypes.string
     };
-
-    state = {
-        translateY: new Animated.Value(0)
-    };
-
-    animation = Animated.timing(this.state.translateY, {
-        duration: 250,
-        toValue: fullHeight
-    });
 
     constructor(props) {
         super(props);
         this._onPress = this._onPress.bind(this);
     }
 
+    state = {
+        translateY: new Animated.Value(0)
+    };
+
     _onPress() {
-        this.animation.start();
+        Animated.timing(this.state.translateY, {
+            duration: 250,
+            toValue: fullHeight
+        }).start();
     }
 
     render() {

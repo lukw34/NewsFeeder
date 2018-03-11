@@ -1,14 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import NewsListComponent from '../NewsList.component';
 import ScreenWrapper from '../../../components/ScreenWrapper/index';
-import Flag from 'react-native-flags';
 
 import {fetchWithQuery} from '../../../actions/fetch.actions';
-import {mapCategories} from '../../../utils/mapper';
-import styles from '../styles'
+
 
 const mapStateToProps = ({request: {data: items}}) => ({
         items
@@ -20,11 +18,12 @@ const mapStateToProps = ({request: {data: items}}) => ({
 
 class NewsList extends React.Component {
     static propTypes = {
-        items: PropTypes.array,
-        style: PropTypes.any,
+        items: PropTypes.arrayOf(PropTypes.shape({})),
+        style: PropTypes.shape({}),
         category: PropTypes.string,
         fetchNewsWithQuery: PropTypes.func,
         navigation: PropTypes.shape({
+            navigate: PropTypes.func,
             state: PropTypes.shape({
                 params: PropTypes.shape({
                     query: PropTypes.string
@@ -33,14 +32,18 @@ class NewsList extends React.Component {
         })
     };
 
+    static defaultProps = {
+        items: [],
+    };
+
     constructor(props) {
         super(props);
         this.navigateTo = this.navigateTo.bind(this);
         this.getNewsList = this.getNewsList.bind(this);
     }
 
-    navigateTo(screen, config) {
-        this.props.navigation.navigate(screen, config);
+    componentDidMount() {
+        this.getNewsList();
     }
 
     getNewsList() {
@@ -48,6 +51,10 @@ class NewsList extends React.Component {
         fetchNewsWithQuery(query).catch(() => {
             this.props.navigation.navigate('Error');
         });
+    }
+
+    navigateTo(screen, config) {
+        this.props.navigation.navigate(screen, config);
     }
 
     render() {
@@ -61,13 +68,8 @@ class NewsList extends React.Component {
                 navigateTo: this.navigateTo
             };
 
-        return <NewsListComponent {...listProps} />
+        return <NewsListComponent {...listProps} />;
     }
-
-    componentDidMount() {
-        this.getNewsList();
-    }
-
 }
 
 export default ScreenWrapper(connect(mapStateToProps, mapDispatchToProps)(NewsList), {}, ({state: {params: {query}}}) => ({

@@ -40,4 +40,4 @@ export {
     fetchTopHeadlinesForCountry,
     fetchByCategory,
     fetchWithQuery
-}
+};

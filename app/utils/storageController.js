@@ -1,8 +1,8 @@
 import {AsyncStorage} from 'react-native';
 
 const setStorageValue = async (key, value) => {
-    await AsyncStorage.setItem(key, value);
-}, getStorageValue = async (key) => await AsyncStorage.getItem(key);
+        await AsyncStorage.setItem(key, value);
+    }, getStorageValue = async (key) => await AsyncStorage.getItem(key);
 
 export default {
     setItem: setStorageValue,
@@ -16,4 +16,4 @@ export default {
 
         return await null;
     }
-}
+};

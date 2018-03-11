@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import variables from '../../variables';
 
 export default StyleSheet.create({
     listContainer: {
@@ -7,4 +6,4 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     }
-})
+});

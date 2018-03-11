@@ -19,9 +19,9 @@ const ModalInfo = ({modalActive, info: {description, title, url, urlToImage: uri
     return (
         <Modal
             modalActive={modalActive}
-            transparent={true}
+            transparent
             onRequestClose={onRequestClose}
-            animationType={'fade'}
+            animationType="fade"
         >
             <ScrollView style={styles.infoModalContainer} contentContainerStyle={styles.infoModalContainerContent}>
                 <TouchableHighlight
@@ -29,10 +29,10 @@ const ModalInfo = ({modalActive, info: {description, title, url, urlToImage: uri
                     style={styles.infoModalContentClose}
                     underlayColor={null}
                 >
-                    <Icon name="x" size={40} color={variables.divider}/>
+                    <Icon name="x" size={40} color={variables.divider} />
                 </TouchableHighlight>
                 <Text style={styles.infoModalContentTitle}>{title}</Text>
-                {uri && <WrappedImage/>}
+                {uri && <WrappedImage />}
                 {description && <Text style={styles.infoModalContentDescription}>{description.toLocaleString()}</Text>}
                 <View style={styles.infoModalContentButton}>
                     {url && <IconButton
@@ -57,6 +57,13 @@ ModalInfo.propTypes = {
     }),
     onSubmitPress: PropTypes.func,
     onRequestClose: PropTypes.func
+};
+
+ModalInfo.defaultProps = {
+    modalActive: false,
+    info : {},
+    onRequestClose: () => {},
+    onSubmitPress: () => {}
 };
 
 export default ModalInfo;

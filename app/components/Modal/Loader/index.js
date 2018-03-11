@@ -13,7 +13,7 @@ const ModalLoader = ({modalActive}) => (
     >
         <View style={styles.loaderModalContainer}>
             <View style={styles.loaderModalContent}>
-                <Loader ballsNumber={5}/>
+                <Loader ballsNumber={5} />
                 <Text>We are fetching some interesting news. </Text>
             </View>
         </View>
@@ -22,6 +22,10 @@ const ModalLoader = ({modalActive}) => (
 
 ModalLoader.propTypes = {
     modalActive: PropTypes.bool
+};
+
+ModalLoader.defaultProps = {
+    modalActive: false
 };
 
 export default ModalLoader;

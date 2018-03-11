@@ -3,4 +3,4 @@ const BASE_URL = 'https://newsapi.org/v2/',
 export {
     BASE_URL,
     API_KEY
-}
+};

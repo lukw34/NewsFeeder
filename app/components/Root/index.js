@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import Root from './Root.component';
 import withNetInfo from '../../HOC/withNetInfo';
 

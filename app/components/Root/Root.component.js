@@ -1,14 +1,15 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import PropTypes from 'prop-types';
 
 import Navigator from '../Navigator';
 import ModalLoader from '../Modal/Loader';
 import ModalNetInfo from '../Modal/NetInfoStatus';
 
+import styles from './styles';
 
 const Root = ({isLoader = false, isInternetAvailable = true}) => (
-    <View style={{flex: 1}}>
+    <View style={styles.rootContainer}>
         <Navigator
             scenes={['home', 'newsList', 'searchList', 'news', 'error']}
         />

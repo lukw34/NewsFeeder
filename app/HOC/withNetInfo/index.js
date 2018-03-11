@@ -1,23 +1,16 @@
 import React from 'react';
 import {NetInfo} from 'react-native';
 
-const withNetInfo = ComponentToLoad => class  extends React.Component {
-    state = {
-        isInternetAvailable: true
-    };
-
+const withNetInfo = ComponentToLoad => class WithNetInfo extends React.Component {
     constructor(props) {
         super(props);
         this._handleNetStatusChange = this._handleNetStatusChange.bind(this);
         this._checkConnectivity = this._checkConnectivity.bind(this);
     }
 
-    componentWillUnmount() {
-        NetInfo.removeEventListener(
-            'connectionChange',
-            this._handleNetStatusChange
-        );
-    }
+    state = {
+        isInternetAvailable: true
+    };
 
     componentDidMount() {
         this._checkConnectivity();
@@ -27,15 +20,23 @@ const withNetInfo = ComponentToLoad => class  extends React.Component {
         );
     }
 
+    componentWillUnmount() {
+        NetInfo.removeEventListener(
+            'connectionChange',
+            this._handleNetStatusChange
+        );
+    }
+
+
     _checkConnectivity() {
         NetInfo.isConnected.fetch().then(isInternetAvailable => {
             this.setState({
                 isInternetAvailable,
-            })
+            });
         }).catch(() => {
             this.setState({
                 isInternetAvailable: false,
-            })
+            });
         });
     }
 

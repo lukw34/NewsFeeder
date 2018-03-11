@@ -14,4 +14,4 @@ export default StyleSheet.create({
         color: 'white',
         width: 250
     }
-})
+});

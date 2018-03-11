@@ -4,22 +4,17 @@ import {View, Animated, ActivityIndicator} from 'react-native';
 import styles from './styles';
 import variables from '../../variables';
 
-const withLoader = (ComponentToLoad, externalProps) => class extends React.Component {
-    state = {
-        isReady: true,
-        fadeAnim: new Animated.Value(0)
-    };
-
-    animation = Animated.timing(this.state.fadeAnim, {
-        toValue: 1,
-        duration: 500
-    });
-
+const withLoader = (ComponentToLoad, externalProps) => class WithLoader extends React.Component {
     constructor(props) {
         super(props);
         this.onLoadStart = this.onLoadStart.bind(this);
         this.onLoadEnd = this.onLoadEnd.bind(this);
     }
+
+    state = {
+        isReady: true,
+        fadeAnim: new Animated.Value(0)
+    };
 
     onLoadStart() {
         this.setState({
@@ -33,7 +28,10 @@ const withLoader = (ComponentToLoad, externalProps) => class extends React.Compo
                 isReady: true
             });
 
-            this.animation.start();
+            Animated.timing(this.state.fadeAnim, {
+                toValue: 1,
+                duration: 500
+            }).start();
         }, 10);
     }
 
@@ -62,7 +60,7 @@ const withLoader = (ComponentToLoad, externalProps) => class extends React.Compo
                     />
                 </Animated.View>
             </View>
-        )
+        );
     }
 };
 

@@ -3,4 +3,4 @@ const createReducer = (initialState = {}, handlers) => (state = initialState, ac
 
 export {
     createReducer
-}
+};

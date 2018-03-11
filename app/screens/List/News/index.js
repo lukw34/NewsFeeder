@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import Flag from 'react-native-flags';
 
 import NewsListComponent from '../NewsList.component';
 import ScreenWrapper from '../../../components/ScreenWrapper/index';
-import Flag from 'react-native-flags';
 
 import {fetchTopHeadlinesForCountry, fetchByCategory} from '../../../actions/fetch.actions';
 import {mapCategories} from '../../../utils/mapper';
-import styles from '../styles'
+import styles from '../styles';
 
 const mapStateToProps = ({request: {data: items, country, category}}) => ({
         items,
@@ -23,18 +23,23 @@ const mapStateToProps = ({request: {data: items, country, category}}) => ({
 
 class NewsList extends React.Component {
     static propTypes = {
-        items: PropTypes.array,
-        style: PropTypes.any,
+        items: PropTypes.arrayOf(PropTypes.shape({})),
+        style: PropTypes.shape({}),
         category: PropTypes.string,
         fetchNews: PropTypes.func,
         fetchNewsByCategory: PropTypes.func,
         navigation: PropTypes.shape({
+            navigate: PropTypes.func,
             state: PropTypes.shape({
                 params: PropTypes.shape({
                     country: PropTypes.string
                 })
             })
         })
+    };
+
+    static defaultProps = {
+        items: [],
     };
 
     constructor(props) {
@@ -44,9 +49,12 @@ class NewsList extends React.Component {
         this.getNewsListByCategory = this.getNewsListByCategory.bind(this);
     }
 
-    navigateTo(screen, config) {
-        this.props.navigation.navigate(screen, config);
+
+    componentDidMount() {
+        const {navigation: {state: {params: {country}}}, fetchNews} = this.props;
+        fetchNews(country);
     }
+
 
     componentWillReceiveProps({category: newCategory}) {
         const {category, navigation} = this.props;
@@ -60,16 +68,21 @@ class NewsList extends React.Component {
     }
 
     getNewsListByCategory(category) {
-        const {country, fetchNewsByCategory, fetchNews} = this.props;
+        const {navigation: {state: {params: {country}}}, fetchNewsByCategory, fetchNews} = this.props;
         if (category) {
             return fetchNewsByCategory(country, category).catch(() => {
                 this.props.navigation.navigate('Error');
             });
         }
+
         return fetchNews(country).catch(() => {
             this.props.navigation.navigate('Error');
         });
 
+    }
+
+    navigateTo(screen, config) {
+        this.props.navigation.navigate(screen, config);
     }
 
     render() {
@@ -83,12 +96,7 @@ class NewsList extends React.Component {
                 navigateTo: this.navigateTo
             };
 
-        return <NewsListComponent {...listProps} />
-    }
-
-    componentDidMount() {
-        const {navigation: {state: {params: {country}}}, fetchNews} = this.props;
-        fetchNews(country);
+        return <NewsListComponent {...listProps} />;
     }
 
 }

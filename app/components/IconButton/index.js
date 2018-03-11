@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import variables from '../../variables';
 import styles from './styles';
 
-const IconButton = ({onPress, title, iconName}) => (
+const IconButton = ({onPress, title = '', iconName = ''}) => (
     <TouchableHighlight style={styles.iconButton} onPress={onPress}>
         <View style={styles.iconButtonContainer}>
             <Text style={styles.iconButtonContainerTitle}>{title.toUpperCase()} </Text>
@@ -20,9 +20,9 @@ const IconButton = ({onPress, title, iconName}) => (
 );
 
 IconButton.propTypes = {
-    onPress: PropTypes.func,
-    title: PropTypes.string,
-    iconName: PropTypes.string
+    onPress: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    iconName: PropTypes.string.isRequired
 };
 
 export default IconButton;

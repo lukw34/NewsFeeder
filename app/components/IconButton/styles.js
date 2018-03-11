@@ -38,4 +38,4 @@ export default StyleSheet.create({
     iconButtonContainerIcon: {
         justifyContent: 'flex-end'
     }
-})
+});

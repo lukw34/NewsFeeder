@@ -9,4 +9,4 @@ export default {
     primaryText: '#212121',
     secondaryText: '#757575',
     divider: '#BDBDBD'
-}
+};

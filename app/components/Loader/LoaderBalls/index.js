@@ -5,17 +5,20 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 
 class LoaderBalls extends React.Component {
-    state = {
-        translateY: new Animated.Value(0),
-        stopAnimation: false
-    };
-
     static propTypes = {
         duration: PropTypes.number,
         index: PropTypes.number,
         delay: PropTypes.number,
         value: PropTypes.number,
         variation: PropTypes.number
+    };
+
+    static defaultProps = {
+        duration: 500,
+        delay: 500,
+        value: 500,
+        index: 0,
+        variation: 10
     };
 
     constructor(props) {
@@ -25,10 +28,13 @@ class LoaderBalls extends React.Component {
         this.runAnimation = this.runAnimation.bind(this);
     }
 
-    stopAnimation() {
-        this.setState({
-            stopAnimation: true
-        });
+    state = {
+        translateY: new Animated.Value(0),
+        stopAnimation: false
+    };
+
+    componentDidMount() {
+        this.runAnimation();
     }
 
     runAnimation() {
@@ -46,11 +52,17 @@ class LoaderBalls extends React.Component {
                 speed: 3
             })
         ]).start(() => {
-            if(!this.state.stopAnimation) {
+            if (!this.state.stopAnimation) {
                 setTimeout(() => {
                     this.runAnimation();
                 }, 150);
             }
+        });
+    }
+
+    stopAnimation() {
+        this.setState({
+            stopAnimation: true
         });
     }
 
@@ -64,12 +76,10 @@ class LoaderBalls extends React.Component {
                 }
             ];
         return (
-            <Animated.View style={style} />
-        )
-    }
-
-    componentDidMount() {
-        this.runAnimation();
+            <Animated.View
+                style={style}
+            />
+        );
     }
 }
 
