@@ -41,6 +41,6 @@
     "preset": "react-native"
   },
   "pre-commit": [
-    "yarn eslint --fix"
+    "eslint"
   ]
 }

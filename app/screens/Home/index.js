@@ -22,7 +22,7 @@ class Home extends React.Component {
         navigation: PropTypes.shape({
             navigate: PropTypes.func
         }).isRequired,
-        style: PropTypes.shape({})
+        style: PropTypes.number
     };
 
     constructor(props) {

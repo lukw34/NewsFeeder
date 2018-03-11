@@ -23,7 +23,7 @@ const NewsList = ({items = [], showTiles = true, style, navigateTo, onRefresh, a
 
 NewsList.propTypes = {
     onRefresh: PropTypes.func,
-    style: PropTypes.shape({}),
+    style: PropTypes.number,
     items: PropTypes.arrayOf(PropTypes.shape({})),
     navigateTo: PropTypes.func,
     activeCategory: PropTypes.string,

@@ -6,7 +6,7 @@ import {styles as commonStyle, fullHeight} from './styles';
 
 class InfoBar extends React.Component {
     static propTypes = {
-        style: PropTypes.shape({}),
+        style: PropTypes.number,
         title: PropTypes.string
     };
 

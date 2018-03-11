@@ -24,7 +24,7 @@ const mapStateToProps = ({request: {data: items, country, category}}) => ({
 class NewsList extends React.Component {
     static propTypes = {
         items: PropTypes.arrayOf(PropTypes.shape({})),
-        style: PropTypes.shape({}),
+        style: PropTypes.number,
         category: PropTypes.string,
         fetchNews: PropTypes.func,
         fetchNewsByCategory: PropTypes.func,
